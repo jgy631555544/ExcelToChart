@@ -1,16 +1,23 @@
 import React from 'react';
 import { Layout, Upload, Button, Icon } from 'antd';
 import './App.css';
-import xlsx from 'node-xlsx';
-import fs from 'fs';
+// import {ipcRenderer} from 'electron'
 
 const {Header, Footer, Content} = Layout;
 
 class App extends React.Component {
+    constructor() {
+        super();
+        console.log('我是1')
+    }
+
     render = () => {
         const uploadProps = {
             name: 'file',
-            transformFile: (data) => {console.log(xlsx.parse(fs.readFileSync(data)))},
+            transformFile: (data) => {
+                console.log(data)
+                // ipcRenderer.send('asynchronous-message', data.path)
+            },
             headers: {
                 authorization: 'authorization-text',
             }
