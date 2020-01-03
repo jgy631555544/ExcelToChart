@@ -1,14 +1,15 @@
 import React from 'react';
 import { Layout, Upload, Button, Icon } from 'antd';
-import './App.css';
-// import {ipcRenderer} from 'electron'
+import './App.css'
 
 const {Header, Footer, Content} = Layout;
-
 class App extends React.Component {
     constructor() {
         super();
         console.log('我是1')
+        window.xxzListener.on('ipcConnect',function (data) {
+            console.log('瞅瞅',data)
+        })
     }
 
     render = () => {

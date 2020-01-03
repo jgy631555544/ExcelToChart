@@ -23,7 +23,8 @@ function createWindow () {
 
     win.webContents.on('dom-ready', function (e) {
         win.webContents.executeJavaScript(`
-            console.log('我是2')
+            console.log(xxzListener)
+            xxzListener.emit('ipcConnect','可乐很冰')
         `);
     });
 
