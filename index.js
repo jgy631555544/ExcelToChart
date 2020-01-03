@@ -23,8 +23,13 @@ function createWindow () {
 
     win.webContents.on('dom-ready', function (e) {
         win.webContents.executeJavaScript(`
-            console.log(xxzListener)
-            xxzListener.emit('ipcConnect','可乐很冰')
+            const xlsx = require('node-xlsx')
+            window.xxzListener.on('ipcRenderer',function (data) {
+                console.log('收到的路径', data)
+                const xlsxPath = xlsx.parse(data);
+                console.log('解析的数据', xlsxPath)
+                xxzListener.emit('ipcMain', xlsxPath)
+            })
         `);
     });
 
@@ -34,12 +39,6 @@ function createWindow () {
         win = null
     })
 }
-
-ipcMain.on('asynchronous-message', (event, arg) => {
-    console.log('看看收到的数据',arg)
-    let excel = xlsx.parse(fs.readFileSync(arg))
-    event.sender.send('asynchronous-reply', excel)
-})
 
 app.on('ready', createWindow)
 

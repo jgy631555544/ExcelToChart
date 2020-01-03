@@ -6,18 +6,18 @@ const {Header, Footer, Content} = Layout;
 class App extends React.Component {
     constructor() {
         super();
-        console.log('我是1')
-        window.xxzListener.on('ipcConnect',function (data) {
-            console.log('瞅瞅',data)
+        window.xxzListener.on('ipcMain',function (data) {
+            console.log('收到解析的数据',data)
         })
     }
 
     render = () => {
         const uploadProps = {
             name: 'file',
+            accept:'.xls,.xlsx',
             transformFile: (data) => {
                 console.log(data)
-                // ipcRenderer.send('asynchronous-message', data.path)
+                xxzListener.emit('ipcRenderer',data.path)
             },
             headers: {
                 authorization: 'authorization-text',
