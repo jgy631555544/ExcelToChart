@@ -25,9 +25,7 @@ function createWindow () {
         win.webContents.executeJavaScript(`
             const xlsx = require('node-xlsx')
             window.xxzListener.on('ipcRenderer',function (data) {
-                console.log('收到的路径', data)
                 const xlsxPath = xlsx.parse(data);
-                console.log('解析的数据', xlsxPath)
                 xxzListener.emit('ipcMain', xlsxPath)
             })
         `);

@@ -1,27 +1,21 @@
 import React from 'react'
 import {Layout, Upload, Button, Icon} from 'antd'
 import './index.css'
-import PropTypes from "prop-types";
 import {withRouter} from "react-router";
 const {Header, Footer, Content} = Layout;
 
 
 class Home extends React.Component {
-    static propTypes = {
-        match: PropTypes.object.isRequired,
-        location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
-    };
-
     constructor(props) {
         super(props);
+        this.history = props.history;
         window.xxzListener.on('ipcMain', function (data) {
-            console.log('收到解析的数据', data)
-        })
-        this.history = props.history
+            this.locationChange(data)
+        }.bind(this))
+
     }
 
-    locationChange = () => this.history.push("/chart")
+    locationChange = (data) => this.history.push("/chart", data)
 
     render = () => {
         const uploadProps = {
@@ -29,8 +23,7 @@ class Home extends React.Component {
             accept: '.xls,.xlsx',
             beforeUpload: (data) => {
                 console.log(data)
-                // xxzListener.emit('ipcRenderer', data.path)
-                this.locationChange()
+                xxzListener.emit('ipcRenderer', data.path)
                 return false
             }
         };
