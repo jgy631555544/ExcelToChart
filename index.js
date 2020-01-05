@@ -14,12 +14,12 @@ function createWindow () {
         }
     })
 
-    // win.loadURL(url.format({
-    //     pathname: path.join(__dirname, './build/index.html'),
-    //     protocol: 'file:',
-    //     slashes: true
-    // }))
-    win.loadURL('http://localhost:3000/')
+    win.loadURL(url.format({
+        pathname: path.join(__dirname, './build/index.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
+    // win.loadURL('http://localhost:3000/')
 
     win.webContents.on('dom-ready', function (e) {
         win.webContents.executeJavaScript(`
@@ -31,7 +31,7 @@ function createWindow () {
         `);
     });
 
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
 
     win.on('closed', () => {
         win = null

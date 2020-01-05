@@ -1,8 +1,9 @@
 import React from 'react'
-import {Layout, Upload, Button, Icon} from 'antd'
+import {Layout, Upload, Icon} from 'antd'
 import './index.css'
 import {withRouter} from "react-router";
-const {Header, Footer, Content} = Layout;
+
+const {Dragger} = Upload;
 
 
 class Home extends React.Component {
@@ -15,7 +16,11 @@ class Home extends React.Component {
 
     }
 
-    locationChange = (data) => this.history.push("/chart", data)
+    locationChange = (data) => {
+        this.history.push("/chart", data)
+        // eslint-disable-next-line no-unused-expressions
+        window.localStorage['chartData'] = JSON.stringify(data)
+    }
 
     render = () => {
         const uploadProps = {
@@ -29,17 +34,12 @@ class Home extends React.Component {
         };
         return (
             <Layout>
-                <Header>Header</Header>
-                <Layout>
-                    <Content>
-                        <Upload {...uploadProps}>
-                            <Button>
-                                <Icon type="upload"/> Click to Upload
-                            </Button>
-                        </Upload>
-                    </Content>
-                </Layout>
-                <Footer>Footer</Footer>
+                <Dragger {...uploadProps}>
+                    <p className="ant-upload-drag-icon">
+                        <Icon type="inbox"/>
+                    </p>
+                    <p className="ant-upload-text">请上传文件</p>
+                </Dragger>
             </Layout>
         )
     }

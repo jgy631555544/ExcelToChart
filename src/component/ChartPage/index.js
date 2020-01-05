@@ -34,7 +34,7 @@ class ChartPage extends React.Component {
         return arr
     }
     render = () => {
-        let state = this.props.location.state,
+        let state = this.props.location.state || JSON.parse(window.localStorage['chartData']),
             dataClean = this.dataClean(state)
         return (
             <div id="chart">
