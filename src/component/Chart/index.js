@@ -6,9 +6,9 @@ function Chart(props) {
 
     let shape = ['circle', 'emptyCircle', 'rect', 'emptyRect', 'roundRect', 'emptyRoundRect', 'triangle', 'emptyTriangle', 'diamond', 'emptyDiamond', 'pin', 'emptyPin', 'arrow', 'emptyArrow'],
         // eslint-disable-next-line no-useless-escape
-        patternOnly = /(?<=\（)[^\（\）]*(?=\）)/,
+        patternOnly = /(?<=\()[^\(\)]*(?=\))/,
         // eslint-disable-next-line no-useless-escape
-        pattern = /(?<=\,)[^\,\）]*(?=\）)/,
+        pattern = /(?<=\,)[^\,\)]*(?=\))/,
         data = props.data,
         allTitle = data[0][0].split('$'),
         standardLine = [],
