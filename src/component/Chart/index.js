@@ -35,6 +35,7 @@ function Chart(props) {
             lineStyle: {width: 1},
             symbol: shape[i],
             symbolSize: 18,
+            connectNulls: true,
             data: d.filter((d, i) => i !== 0),
             markLine: {
                 data: markLineData
