@@ -25,7 +25,7 @@ function Chart(props) {
                 symbolSize: 0,
                 lineStyle: {color: 'red'},
                 label: {
-                    fontSize: 20,
+                    fontSize: 17,
                     formatter: `${data[i][1]}${unit == null ? '' : unit[0]}`
                 }
             }}),
@@ -62,11 +62,13 @@ function Chart(props) {
             },
             toolbox: {
                 feature: {
-                    saveAsImage: {}
+                    saveAsImage: {
+                        pixelRatio: 4
+                    }
                 }
             },
             xAxis: {
-                nameGap: 20,
+                nameGap: 38,
                 nameTextStyle: {
                     fontSize: 24
                 },
@@ -78,7 +80,7 @@ function Chart(props) {
             yAxis: {
                 name: allTitle[0],
                 nameRotate: 90,
-                nameGap: 40,
+                nameGap: 70,
                 nameTextStyle: {
                     fontSize: 24
                 },
