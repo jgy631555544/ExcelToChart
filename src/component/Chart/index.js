@@ -41,6 +41,16 @@ function Chart(props) {
                 data: markLineData
             }
         }))
+    function randomString(len) {
+        len = len || 32;
+        var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+        var maxPos = $chars.length;
+        var pwd = '';
+        for (var i = 0; i < len; i++) {
+            pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        return pwd;
+    }
 
     React.useEffect(() => {
         let option = {
@@ -56,14 +66,15 @@ function Chart(props) {
                 axisPointer: {
                     type: 'cross',
                     label: {
-                        backgroundColor: '#6a7985'
+                        backgroundColor: '#6a7985',
                     }
                 }
             },
             toolbox: {
                 feature: {
                     saveAsImage: {
-                        pixelRatio: 4
+                        pixelRatio: 4,
+                        name: randomString(8)
                     }
                 }
             },
@@ -75,6 +86,7 @@ function Chart(props) {
                 nameLocation: 'middle',
                 axisLabel:{fontSize: 20},
                 type: 'category',
+                min: 'dataMin',
                 data: xAxis
             },
             yAxis: {

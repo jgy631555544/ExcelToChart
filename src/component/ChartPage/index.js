@@ -36,6 +36,7 @@ class ChartPage extends React.Component {
     render = () => {
         let state = this.props.location.state || JSON.parse(window.localStorage['chartData']),
             dataClean = this.dataClean(state)
+        console.log(dataClean)
         return (
             <div id="chart">
                 <Button onClick={this.click} type="primary">
